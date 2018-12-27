@@ -12,14 +12,18 @@ $findme   = 'REFUND';
 $findmepipe = '|';
 
 $paramList = array();
+$content=trim(file_get_contents("php://input"));
+$_POST=json_decode($content,true);
 
-$paramList["MID"] = '';
-$paramList["ORDER_ID"] = '';
-$paramList["CUST_ID"] = '';
-$paramList["INDUSTRY_TYPE_ID"] = '';
-$paramList["CHANNEL_ID"] = '';
-$paramList["TXN_AMOUNT"] = '';
-$paramList["WEBSITE"] = '';
+$paramList["MID"] = 'parkin46421047711652';
+$paramList["ORDER_ID"] = '11212';
+$paramList["CUST_ID"] = '12344';
+$paramList["INDUSTRY_TYPE_ID"] = 'Retail';
+$paramList["CHANNEL_ID"] = 'WEB';
+$paramList["TXN_AMOUNT"] = '1';
+$paramList["WEBSITE"] = 'APP_STAGING';
+$paramList["CALLBACK_URL"]="https://pguat.paytm.com/paytmchecksum/paytmCallback.jsp";
+
 
 foreach($_POST as $key=>$value)
 {  
@@ -28,7 +32,11 @@ foreach($_POST as $key=>$value)
   if ($pos === false || $pospipe === false) 
     {
         $paramList[$key] = $value;
+
+        
     }
+    echo $key;
+
 }
 
 
